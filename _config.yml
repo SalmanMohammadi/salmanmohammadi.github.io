@@ -1,5 +1,5 @@
 
-baseurl: ""
+baseurl: "/salman.github.io"
 title: salman mohammadi
 subtitle: Content-centric blogging
 author: salman mohammadi
@@ -20,8 +20,8 @@ safe: false
 #   template: _page.txt
 #   extension: md
 # editor: gvim
-# git:
-#   branch: master
+git:
+  branch: main
 # transfer:
 #   command: rsync
 #   settings: -av

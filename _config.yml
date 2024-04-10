@@ -1,27 +1,42 @@
-baseurl: /tufte-jekyll
-title: Tufte-Jekyll
+
+baseurl: ""
+title: salman mohammadi
 subtitle: Content-centric blogging
-author: clay harmon
+author: salman mohammadi
 simple_search: http://google.com/search
 description: A Jekyll theme for content-rich sites
 name: tufte
 markdown: kramdown
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
-permalink: /articles/:short_year/:title
-timezone: America/New_York
+permalink: pretty
+timezone: Europe/London
 excerpt_separator: <!--more-->  # you can specify your own separator, of course.
 exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'UploadToGithub.Rakefile', 'README.md']
-post:
-  template: _post.txt
-  extension: md
-page:
-  template: _page.txt
-  extension: md
-editor: gvim
-git:
-  branch: master
-transfer:
-  command: rsync
-  settings: -av
-  source: _site/
-  destination: ~/Git/clayh53.github.com/
+safe: false
+# post:
+#   template: _post.txt
+#   extension: md
+# page:
+#   template: _page.txt
+#   extension: md
+# editor: gvim
+# git:
+#   branch: master
+# transfer:
+#   command: rsync
+#   settings: -av
+#   source: _site/
+#   destination: ~/Git/clayh53.github.com/
+kramdown:
+  # math_engine: katex
+  math_engine: null  # for katex (because kramdown defaults to mathjax)
+  syntax_highlighter: rouge
+sass:
+  sass_dir: _sass
+  style:    compressed
+
+collections:
+  content:
+    output: true
+    permalink: /:collection/:path/
+highlighter: rouge

@@ -32,26 +32,36 @@ html, body { height: 100%; }
 
 // First significant deviation from CSS on tufte.css site - variable font size as browser width expands or contracts
 //html { font-size: 15px; }
+#MathJax_Message {
+  display: none;
+}
+* {
+  text-rendering: optimizeLegibility;
+  font-kerning: auto;
+}
 
 html{
     text-align: baseline;
-    font-size: 11px;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $font-size*1.424;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
   }
 
-@media screen and (min-width: 800px){ html{ font-size: 12px;} }
+// @media screen and (min-width: 760px){ html{ font-size: $font-size*0.1;} }
+// @media screen and (max-width: 800px){ html{ font-size: $font-size*0.85;} }
 
-@media screen and (min-width: 900px){ html{ font-size: 13px;} }
+// @media screen and (min-width: 900px){ html{ font-size: $font-size*0.7;} }
 
-@media screen and (min-width: 1000px){ html{ font-size: 14px;} }
+// @media screen and (min-width: 1000px){ html{ font-size: $font-size*0.8;} }
 
-@media screen and (min-width: 1100px){ html{ font-size: 15px; } }
+// @media screen and (min-width: 1100px){ html{ font-size: $font-size*0.85; } }
 
-@media screen and (min-width: 1200px){ html{ font-size: 16px; } }
+// @media screen and (min-width: 1200px){ html{ font-size: $font-size*0.9; } }
 
-@media screen and (min-width: 1300px){ html{ font-size: 17px; } }
+// @media screen and (min-width: 1300px){ html{ font-size: $font-size; } }
 
 // Mathjax fonts need TLC
 .mjx-math{
@@ -66,15 +76,15 @@ a {
 p > a, cite > a, span > a { @if $link-style == underline
     {
       color: $text-color;
-      text-decoration: none;
-      background: -webkit-linear-gradient($bg-color, $bg-color), -webkit-linear-gradient($bg-color, $bg-color), -webkit-linear-gradient(currentColor, currentColor);
-      background: linear-gradient($bg-color, $bg-color), linear-gradient($bg-color, $bg-color), linear-gradient(currentColor, currentColor);
+      text-decoration: underline;
+      // background: currentColor;//-webkit-linear-gradient($bg-color, $bg-color), -webkit-linear-gradient($bg-color, $bg-color), -webkit-linear-gradient(currentColor, currentColor);
+      // background: //linear-gradient($bg-color, $bg-color), linear-gradient($bg-color, $bg-color), linear-gradient(currentColor, currentColor);
       -webkit-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
       -moz-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-      background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-      background-repeat: no-repeat, no-repeat, repeat-x;
-      text-shadow: 0.03em 0 $bg-color, -0.03em 0 $bg-color, 0 0.03em $bg-color, 0 -0.03em $bg-color, 0.06em 0 $bg-color, -0.06em 0 $bg-color, 0.09em 0 $bg-color, -0.09em 0 $bg-color, 0.12em 0 $bg-color, -0.12em 0 $bg-color, 0.15em 0 $bg-color, -0.15em 0 $bg-color;
-      background-position: 0% 93%, 100% 93%, 0% 93%; 
+      // background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+      // background-repeat: no-repeat, no-repeat, repeat-x;
+      // text-shadow: 0.03em 0 $bg-color, -0.03em 0 $bg-color, 0 0.03em $bg-color, 0 -0.03em $bg-color, 0.06em 0 $bg-color, -0.06em 0 $bg-color, 0.09em 0 $bg-color, -0.09em 0 $bg-color, 0.12em 0 $bg-color, -0.12em 0 $bg-color, 0.15em 0 $bg-color, -0.15em 0 $bg-color;
+      // background-position: 0% 93%, 100% 93%, 0% 93%; 
     }
     @else
     {
@@ -83,14 +93,17 @@ p > a, cite > a, span > a { @if $link-style == underline
     }
   }
 
-body { width: 87.5%;
+body { 
+  overflow-x: hidden;
+  width: 92.5%;
        margin-left: auto;
        margin-right: auto;
        padding-left: 12.5%;
        font-family: $body-font;
+      //  font: 1.4rem/2rem $body-font;
        background-color: $bg-color;
        color: $text-color;
-       max-width: 1400px;
+       max-width: 1480px;
        counter-reset: sidenote-counter; }
 
 // --------- Typography stuff -----------//
@@ -136,6 +149,13 @@ p, li { line-height: 2rem;
 /* Chapter Epigraphs */
 div.epigraph { margin: 3.5636rem 0; }
 
+blockquote {
+  border-left: .25em solid $border-color;
+  padding: 0 1em;
+}
+blockquote p {
+  margin-top: 0;
+}
 div.epigraph > blockquote { margin-top: 3rem;
                             margin-bottom: 3rem;
                              }
@@ -143,8 +163,8 @@ div.epigraph > blockquote { margin-top: 3rem;
 div.epigraph > blockquote, div.epigraph > blockquote > p { font-style: italic; }
 
 div.epigraph > blockquote > footer {  font-style: normal;
-                                      width: 45%;
-                                      padding-left: 2.5%;
+                                      // width: 45%;
+                                      // padding-left: 2.5%;
                                       padding-right: 2.5%;
                                       padding-top: 0;
                                       margin-top: 0.4455rem;
@@ -153,8 +173,9 @@ div.epigraph > blockquote > footer {  font-style: normal;
 div.epigraph > blockquote > footer > cite { font-style: italic; }
 /* end chapter epigraphs styles */
 
-blockquote p, blockquote footer{  width: 45%;
-                                  padding-left: 2.5%;
+blockquote p, blockquote footer{  
+  // width: 45%;
+                                  // padding-left: 2.5%;
                                   padding-right: 2.5%;}
 
 blockquote footer {  font-size: 1.1rem;
@@ -230,6 +251,8 @@ th, td{ font-size: 1.2rem;
 
 /* Basic Layout stuff --*/
 
+.kdmath { font-size: $font-size*0.9 !important; }
+
 article { position: relative;
           padding: 1
 
@@ -245,7 +268,7 @@ ul,ol { width: 45%;
 
 //li { padding: 0.5em 0; } //vertical padding on list items screws up vertical rhythym
 
-figure, figure img.maincolumn { max-width: 55%;
+figure, figure img.maincolumn { max-width: $max-width;
          -webkit-margin-start: 0;
          -webkit-margin-end: 0;
          margin-bottom: 3em; }
@@ -267,19 +290,20 @@ img { max-width: 100%; }
 
 .sidenote, .marginnote { float: right;
                          clear: right;
-                         margin-right: -60%;
-                         width: 50%;
+                         margin-right: -45%;
+                         width: 40%;
                          margin-top: 0;
                          margin-bottom: 1.96rem;
-                         font-size: 1.0rem;
-                         line-height: 1.96; //changed to bring line heights into rational pattern
+                        //  margin-top: 1.5rem;
+                         font-size: $font-size*1.2;
+                         line-height: $font-size*1.424; //changed to bring line heights into rational pattern
                          vertical-align: baseline;
                          position: relative; }
 
 
 li .sidenote, li .marginnote{ margin-right: -80%; } //added to allow for the fact that lists are indented and marginnotes and sidenotes push to right
 
-blockquote .sidenote, blockquote .marginnote { margin-right: -79% }
+// blockquote .sidenote, blockquote .marginnote blockquote { margin-right: -79% }
 
 .sidenote-number { counter-increment: sidenote-counter; }
 
@@ -287,30 +311,48 @@ blockquote .sidenote, blockquote .marginnote { margin-right: -79% }
                                            font-family: et-bembo-roman-old-style;
                                            color: $contrast-color; //added color
                                            position: relative;
-                                           vertical-align: baseline; }
+                                           vertical-align: baseline;
+                                          }
 
 .sidenote-number:after { content: counter(sidenote-counter);
-                         font-size: 1rem;
+                         font-size: $font-size*1.1;
                          top: -0.5rem;
-                         left: 0.1rem; }
+                         left: 0.15rem; }
 
-.sidenote:before { content: counter(sidenote-counter) ".\000a0"; // this is unicode for a non-breaking space
+.sidenote:before { content: counter(sidenote-counter) "\000a0"; // this is unicode for a non-breaking space
                    color: $contrast-color;
-                   top: 0rem; } //removed superscripting for numerical reference in sidenote
+                   top: -0.5rem; 
+                   margin-left: -0.65rem;
 
-p, footer, div.table-wrapper,  .MJXc-display, .MathJax { width: 55%; }
+                   font-size: $font-size*1.1;
+                  } //removed superscripting for numerical reference in sidenote
 
+p, footer, div.table-wrapper,  .MJXc-display, .MathJax .MathJax_SVG_Display { width: $max-width; }
+
+.MathJax_SVG_Display .katex-display{
+  max-width: 65% !important;
+  font-size: 1.4em !important;
+  width: $max-width;
+}
+.katex-display{
+  max-width: 65% !important;
+  width: $max-width;
+  font-size: 1.4em !important;
+}
 div.table-wrapper, table { overflow-x: auto; } //changed all overflow values to 'auto' so scroll bars appear only as needed
 
-@media screen and (max-width: 760px) { p, footer { width: 90%; }
+@media screen and (max-width: 760px) { p, footer { width: 100%!important; 
+  padding-left: 0%!important;
+  padding-right: 0%!important;}
                                        pre code { width: 87.5%; }
                                        ul { width: 85%; }
                                        figure { max-width: 90%; }
                                        figcaption, figure.fullwidth figcaption { margin-right: 0%;
                                                                                  max-width: none; }
-                                       blockquote p, blockquote footer, div.epigraph > blockquote > footer,.MJXc-display {  width: 80%;
-                                                                          padding-left: 5%;
-                                                                          padding-right: 5%;
+                                       blockquote p, blockquote footer, div.epigraph > blockquote > footer,.MJXc-display {
+                                                                          // width: 80%;
+                                                                          padding-left: 0%!important;
+                                                                          padding-right: 0%!important;
                                                                         }}
 
 .marginnote code, .sidenote code { font-size: 1rem; } //more .code class removal
@@ -332,8 +374,12 @@ input.margin-toggle { display: none; }
 label.sidenote-number { display: inline; }
 
 label.margin-toggle:not(.sidenote-number) { display: none; }
-
-@media (max-width: 760px) { label.margin-toggle:not(.sidenote-number) { display: inline; color: $contrast-color; }
+.katex-mathml {
+  line-height: $font-size*1.424;
+}
+@media (max-width: 760px) { 
+                            body {padding-left: 0% !important;}
+                            label.margin-toggle:not(.sidenote-number) { display: inline; color: $contrast-color; }
                             .sidenote, .marginnote { display: none; }
                             .margin-toggle:checked + .sidenote,
                             .margin-toggle:checked + .marginnote { display: block;
@@ -362,6 +408,15 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
                             img { max-width: 100%; } 
                             figcaption.maincolumn-figure, figure.fullwidth figcaption { float:none; text-align: center;}
                             figure.fullwidth figcaption { margin-left: 0; }
+                            .MathJax_SVG_Display {
+                              max-width: 100% !important;
+                              margin-left: -5% !important;
+                            }
+                            .katex-display {
+                              max-width: 100% !important;
+                            }
+                            .sidenote-number:after {
+                              left: 0.2rem; }
                           }
 /*--- End of Basic Layout stuff from tufte.css ---*/
 
@@ -403,7 +458,7 @@ header > nav a img{
   top:-1.5rem;
 }
 ul.footer-links, .credits{
-  list-style: none;
+  // list-style: none;
   text-align: center;
   margin: 0 auto;
 }
@@ -580,6 +635,18 @@ hr.slender {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a,a:visited {
+  // color: #222;
+  color: $text-color !important;filter: invert(0) !important;
+  
+}
+a:hover {
+  color: $contrast-color !important; filter: invert(0) !important;
+}
+// a:visited {
+//   color: inherit;
+// }
+
 .icon-mail3:before {
   content: "\ea85";
 }
@@ -644,3 +711,10 @@ hr.slender {
   content: "\eae4";
 }
 /*-- End of Icomoon icon font section --*/
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  body{background:#151515;filter:invert(1);}
+  .highlight{border-color: grey !important;}
+  a:hover{filter:invert(0);}
+  img,iframe,.highlight,a:hover,a:focus{filter:invert(1);}
+}

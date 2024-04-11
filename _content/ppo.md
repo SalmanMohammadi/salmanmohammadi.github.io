@@ -169,7 +169,7 @@ Tying everything together, we can show the general process of updating our polic
 >>
 >>Optimise $\theta$ using $J(\theta)$, the PPO objective{% sidenote "21" "This is usually done over $M$ minibatch steps for $M \le N$. $\pi_{\theta_{old}}$ is fixed as the initial policy at the start of the trajectory, and $\pi_\theta$ is taken as the policy at the current optimisation step." %}. 
 >>
->> Optimise $\phi$ using $L=(V^\phi(s_t)-\gamma^t r_t)^2$ using stored $r_t$ and $s_t${% sidenote "22" " Similarly to the policy optimisation step, this is also done over $M$ steps. $V^\phi$ is taken as the value function at the current optimisation step, i.e. value estimates are bootstrapped." %}.
+>> Optimise $\phi$ using $L=(V^\phi(s_t)-\gamma^t r_t)^2$ using stored $r_t$ and $s_t${% sidenote "22" "Similarly to the policy optimisation step, this is also done over $M$ steps. $V^\phi$ is taken as the value function at the current optimisation step, i.e. value estimates are bootstrapped." %}.
 >
 >... repeat!
 

@@ -94,7 +94,7 @@ $$
 There's one more thing we can do to reduce variance. The current advantage estimator estimates reward by samples collected from a single trajectory. However, there is a huge amount of variance in the possible trajectories that may evolve from a given state. These trajectories may look similar in the short-term (except for policies early in the optimisation process which are far more random), but longer-term rewards can vary significantly. We could consider a lower-variance estimate of the advantage by sampling trajectories - once again trading variance for bias. This is the central idea behind *n*-step returns{% sidenote "17" "- [DeepMimic Supplementary A, Peng et al.](https://arxiv.org/pdf/1804.02717.pdf)<br>- [Reinforcement Learning: An Introduction, 7.1 n-step TD Prediction, Sutton and Barto](http://incompleteideas.net/book/ebook/node73.html)" %}. Consider the term $\delta_t$ in our estimation of the advantage function. we take the initial reward observed from the environment, $r_t$, then bootstrap future estimated discounted rewards, and subtract a baseline estimated value function for the state{% sidenote "18" "Daniel Takeshi's [post](https://danieltakeshi.github.io/2017/03/28/going-deeper-into-reinforcement-learning-fundamentals-of-policy-gradients/) on using baselines to reduce variance of gradient estimates is useful here." %}. For a single time-step, this can be denoted as:
 
 $$
-\hat{A^{(1)}_{t}} = r_t+\gamma V_{\phi}^{\pi}(s_{t+1})- V_{\phi}^{\pi}(s) = \delta_t^{V_\phi}
+\hat{A_{t}}^{(1)} = r_t+\gamma V_{\phi}^{\pi}(s_{t+1})- V_{\phi}^{\pi}(s) = \delta_t^{V_\phi}
 $$
 
 What if we sample rewards from multiple timesteps, and then estimate the future discounted rewards from then on? Let's denote $\hat{A_t}^{(k)}$ as follows:

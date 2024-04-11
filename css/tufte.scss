@@ -73,6 +73,27 @@ a {
   text-decoration: none;
 }
 
+.footer-hr {
+  margin-top: 2%;
+margin-right: auto;
+  margin-left: 1%;
+  // width: 75% !important;
+  width:75%;
+  display: flex;
+  justify-content: center;
+  // padding-right: 12.5% !important;
+}
+.centered-text   {
+  margin-right: auto;
+  
+}
+p.centered-text {
+  // text-decoration: underline;
+  padding-right: 12.5% !important;
+  // width: 81% !important;
+  margin-left: 3%;
+  margin-right: auto;
+}
 p > a, cite > a, span > a { @if $link-style == underline
     {
       color: $text-color;
@@ -104,7 +125,8 @@ body {
        background-color: $bg-color;
        color: $text-color;
        max-width: 1480px;
-       counter-reset: sidenote-counter; }
+       counter-reset: sidenote-counter;}
+      
 
 // --------- Typography stuff -----------//
 // added rational line height and margins ala http://webtypography.net/intro/
@@ -300,7 +322,11 @@ img { max-width: 100%; }
                          vertical-align: baseline;
                          position: relative; }
 
-
+.centered-nav, .centered-text{
+  width:75%;
+display: flex;
+justify-content: center;
+}
 li .sidenote, li .marginnote{ margin-right: -80%; } //added to allow for the fact that lists are indented and marginnotes and sidenotes push to right
 
 // blockquote .sidenote, blockquote .marginnote blockquote { margin-right: -79% }
@@ -432,8 +458,13 @@ header > nav.group, body footer {
   padding-top: 2rem;
 }
 
-nav.group a.active:before{ content:"\0003c\000a0";} // escaped unicode for the carats and then a space on active menu links
-nav.group a.active:after{ content:"\000a0\0003e" ;}
+footer {
+
+  padding-top: 3%;
+  padding-bottom: 5%;
+}
+// nav.group a.active:before{ content:"\0003c\000a0";} // escaped unicode for the carats and then a space on active menu links
+// nav.group a.active:after{ content:"\000a0\0003e" ;}
 
 header > nav  a{
   font-size: 1.2rem;

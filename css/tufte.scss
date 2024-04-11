@@ -452,6 +452,11 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
 .contrast { color: $contrast-color;}
 .smaller { font-size: 80%;}
 //Nav and Footer styling area
+.stacked-elements > * {
+  display: flex;
+
+  justify-content: center;
+}
 
 header > nav.group, body footer {
   width: 95%;

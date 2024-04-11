@@ -4,7 +4,7 @@ layout: post
 ---
 ## Prelude
 
-The aim of this post is to share my understanding of some of the conceptual and theoretical background behind implementations of the [Proximal Policy Algorithm](https://arxiv.org/pdf/1506.02438.pdf) (PPO) reinforcement learning (RL) algorithm. PPO is widely used due to its stability and sample efficiency - popular applications include [beating the Dota 2 world champions](https://openai.com/research/openai-five-defeats-dota-2-world-champions) and [aligning language models](https://arxiv.org/pdf/2203.02155.pdf). While the PPO paper provides quite a general and straightforward overview of the algorithm, modern implementations of PPO use several additional techniques to achieve state-of-the-art  performance in complex environments{% sidenote "0" "[Procgen, Karle Cobbe et al.](https://openai.com/research/procgen-benchmark)<br>[Atari, OpenAI Gymnasium](https://gymnasium.farama.org/environments/atari/)" %}. You might discover this if you try to implement the algorithm solely based on the paper. I try and present a coherent narrative here around these additional techniques.
+The aim of this post is to share my understanding of some of the conceptual and theoretical background behind implementations of the [Proximal Policy Optimisation](https://arxiv.org/pdf/1506.02438.pdf) (PPO) reinforcement learning (RL) algorithm. PPO is widely used due to its stability and sample efficiency - popular applications include [beating the Dota 2 world champions](https://openai.com/research/openai-five-defeats-dota-2-world-champions) and [aligning language models](https://arxiv.org/pdf/2203.02155.pdf). While the PPO paper provides quite a general and straightforward overview of the algorithm, modern implementations of PPO use several additional techniques to achieve state-of-the-art  performance in complex environments{% sidenote "0" "[Procgen, Karle Cobbe et al.](https://openai.com/research/procgen-benchmark)<br>[Atari, OpenAI Gymnasium](https://gymnasium.farama.org/environments/atari/)" %}. You might discover this if you try to implement the algorithm solely based on the paper. I try and present a coherent narrative here around these additional techniques.
 
 I'd recommend reading parts [one](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html), [two](https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html), and [three](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html) of [SpinningUp](https://spinningup.openai.com/en/latest/index.html) if you're new to reinforcement learning. There's a few longer-form educational resources that I'd recommend if you'd like a broader understanding of the field{% sidenote "1" "- [A (Long) Peek into Reinforcement Learning, Lilian Weng](https://lilianweng.github.io/posts/2018-02-19-rl-overview/)<br> - [Artificial Intelligence: A Modern Approach, Stuart Russell and Peter Norvig](https://aima.cs.berkeley.edu/) <br>- [Reinforcement Learning: An Introduction, Sutton and Barto](http://incompleteideas.net/book/the-book-2nd.html)<br>[CS285 at UC Berkeley, Deep Reinforcement Learning, Sergey Levine](https://rail.eecs.berkeley.edu/deeprlcourse/)" %}, but this isn't comprehensive. You should be familiar with common concepts and terminology in RL{% sidenote "2" "[Lilian Weng's list of RL notation is very useful here](https://lilianweng.github.io/posts/2018-04-08-policy-gradient/#notations)" %}. For clarity, I'll try to spell out any jargon I use here.
 
@@ -116,15 +116,10 @@ Observe that for $k=\infty$ we recover an unbiased, high-variance expectation of
 $$
 \begin{aligned}
 \hat{A_{t}}^{\gamma \lambda} &= (1-\lambda)(\hat{A_{t}}^{(1)} + \lambda\hat{A_{t}}^{(2)} + \lambda^2\hat{A_{t}}^{(3)} + ...)\\
-
 &= (1-\lambda)(\delta_{t}^{V_\phi} + \lambda(\delta_{t}^{V_{\phi}}+ \gamma\delta_{t+1}^{V_\phi})  + \lambda^{2}(\delta_{t}^{V_\phi}+\gamma\delta_{t+1}^{V_{\phi}}+ \gamma^2\delta_{t+2}^{V_\phi})+ ...)\\
-
 &= (1-\lambda)(\delta_{t}^{V_\phi}(1+\lambda+\lambda^2+...) + \gamma\delta_{t+1}^{V_\phi}(\lambda+\lambda^2+\lambda^3+...)+...)\\
-
 &= (1-\lambda)\left(\delta_{t}^{V_\phi}\left(\frac{1}{1-\lambda}\right)+\gamma\delta_{t}^{V_\phi}\left(\frac{\lambda}{1-\lambda}\right)+\gamma^2\delta_{t}^{V_\phi}(\frac{\lambda^2}{1-\lambda})\right)\\
-
 &= \sum\limits_{l=1}^{\infty}(\gamma \lambda)^{l}\delta_{t+1}^{V_\phi}
-
 \end{aligned}
 $$
 
@@ -133,21 +128,13 @@ Great. As you may have noticed, there's two special cases for this expression - 
 $$
 \begin{aligned}
 \hat{A_t}^{\gamma*0}&=\hat{A_t}^{(1)}=r_t+\gamma V_{\phi}^{\pi}(s_{t+1})- V_{\phi}^{\pi}(s)=\delta_t\\
-
-\hat{A_t}^{\gamma*1}&= \sum\limits_{l=1}^{\infty}\gamma^{l}\delta_{t+1}^{V_\phi}&&\\
-
+\hat{A_t}^{\gamma*1}&= \sum\limits_{l=1}^{\infty}\gamma^{l}\delta_{t+1}^{V_\phi}\\
 &=(r_t+\gamma V_\phi(s_{t+1})-V_\phi(s_{t})) \\
-
 &+ \gamma(r_{t+1}+\gamma V_\phi(s_{t+2})-V_\phi(s_{t+1}))\\
-
 &+ \gamma^2(r_{t+2}+\gamma V_\phi(s_{t+3})-V_\phi(s_{t+2}))+ ... \\
-
 &= r_{t+} \bcancel{\gamma V_\phi(s_{t+1})}-V_\phi(s_{t})\\
-
 &+ \gamma r_{t+1} + \bcancel{\gamma^{2}V_\phi(s_{t+2})}-\bcancel{\gamma V_\phi(s_{t+1})}\\
-
 &+ \gamma^2 r_{t+2} + \gamma^{3}V_\phi(s_{t+3})-\bcancel{\gamma^2 V_\phi(s_{t+2})}+...\\
-
 &=\sum\limits_{l=1}^{\infty}\gamma^{l}r_{t+1}- V_{\phi}(s_t)
 \end{aligned}
 $$

@@ -1,7 +1,9 @@
 ---
 layout: default
 ---
-<h1>{{ page.title}}</h1>
+{% unless page.url == "/" %}
+  <h1>{{ page.title}}</h1>
+{% endunless %}
 <p class="subtitle">{{ page.date | date: "%B %-d, %Y" }}</p>
 
 {{ content }}

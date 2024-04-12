@@ -11,7 +11,7 @@ Artificial intelligence could be the most transformative technology ever created
 
 <!-- {: class="centered-text"} -->
 
-{%- assign posts = site.content | where_exp: 'post', 'post.hidden == false' -%}
+{%- assign posts = site.content | where_exp: 'post', 'post.hidden != false' -%}
 <hr class="contrast footer-hr">
   <div class="post-list">
     <ul class="content-listing">

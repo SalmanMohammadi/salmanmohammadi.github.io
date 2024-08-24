@@ -12,6 +12,7 @@ Artificial intelligence could be the most transformative technology ever created
 <!-- {: class="centered-text"} -->
 
 {%- assign posts = site.content | where_exp: 'post', 'post.hidden != false' -%}
+
 <hr class="contrast footer-hr">
   <div class="post-list">
     <ul class="content-listing">
@@ -21,8 +22,8 @@ Artificial intelligence could be the most transformative technology ever created
               <p class="posting-list">{{ post.title }}</p>
             </a>
           {% else %}    
-        <a class="posting-list" href="{{ post.url | prepend: site.baseurl }}"><p class="posting-list">{{ post.title }}</p></a>
-                {% endif %}
+            <a class="posting-list" href="{{ post.url | prepend: site.baseurl }}"><p class="posting-list">{{ post.title }}</p></a>
+        {% endif %}
       {% endfor %}
         <br>
     </ul>

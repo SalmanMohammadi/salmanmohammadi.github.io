@@ -1,5 +1,5 @@
 ---
-title: LLM Fine-tuning Memory Optimization Techniques in pytorch/torchtune 
+title: Large Language Model Fine-tuning Optimization Techniques in torchtune
 external_url: https://pytorch.org/torchtune/main/tutorials/memory_optimizations.html
 layout: post
 ---

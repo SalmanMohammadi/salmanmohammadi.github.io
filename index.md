@@ -7,7 +7,7 @@ I'm&nbsp;[Salman Mohammadi](https://www.linkedin.com/in/salman-m-a541a6152/). I 
 
 <!-- {: class="centered-text"} -->
 
-Currently working on [`pytorch/torchtune`](https://github.com/pytorch/torchtune) - a PyTorch-native library for fine-tuning LLMs. Come try it out! 
+Working on&nbsp;[`pytorch/torchtune`](https://github.com/pytorch/torchtune), a PyTorch-native library for fine-tuning LLMs. Come try it out! 
 
 <!-- {: class="centered-text"} -->
 

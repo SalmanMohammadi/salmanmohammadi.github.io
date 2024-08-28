@@ -5,9 +5,12 @@ title: salman mohammadi
 
 I'm&nbsp;[Salman Mohammadi](https://www.linkedin.com/in/salman-m-a541a6152/). I love to learn about new things.
 
+
 Currently working on [`pytorch/torchtune`](https://github.com/pytorch/torchtune) - a PyTorch-native library for fine-tuning LLMs. Come try it out! 
 
+
 Artificial intelligence could be the most transformative technology ever created. I'm passionate about ensuring this technology has a positive impact on humanity. See some of my writing below:
+
 
 {%- assign posts = site.content | where_exp: 'post', 'post.hidden != false' -%}
 

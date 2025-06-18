@@ -7,11 +7,9 @@ I'm&nbsp;[Salman Mohammadi](https://www.linkedin.com/in/salman-m-a541a6152/). I 
 
 <!-- {: class="centered-text"} -->
 
-Working on&nbsp;[`pytorch/torchtune`](https://github.com/pytorch/torchtune), a PyTorch-native library for fine-tuning LLMs. Come try it out! 
-
 <!-- {: class="centered-text"} -->
 
-Artificial intelligence could be the most transformative technology ever created. I'm passionate about ensuring this technology has a positive impact on humanity. See some of my writing below:
+Artificial intelligence could be the most transformative technology ever created. I'd like to make sure it has a positive impact on humanity. See some of my writing below:
 
 <!-- {: class="centered-text"} -->
 

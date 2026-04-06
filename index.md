@@ -18,6 +18,9 @@ Artificial intelligence could be the most transformative technology ever created
 <hr class="contrast footer-hr">
   <div class="post-list">
     <ul class="content-listing">
+      <a class="posting-list" href="https://github.com/salmanmohammadi/nanocode" target="_blank">
+        <p class="posting-list">nanocode: the best Claude Code that $200 can buy. An end-to-end pretraining, SFT, and DPO library written in pure JAx for TPUs.</p>
+      </a>
       {% for post in posts %}
         {% if post.external_url %}
             <a class="posting-list" href="{{ post.external_url }}" target="_blank">
